@@ -1,0 +1,8 @@
+.travis.yml
+test
+npm-debug.log
+.git
+*.xml
+.idea
+gulpfile.js
+.editorconfig

@@ -1,0 +1,19 @@
+// Font Awesome
+$fa-font-path: "../assets/webfonts";
+@import "@/styles/vendor/fontawesome/fontawesome.scss";
+@import "@/styles/vendor/fontawesome/solid.scss";
+@import "@/styles/vendor/fontawesome/light.scss";
+@import "@/styles/vendor/fontawesome/brands.scss";
+@import "@/styles/vendor/fontawesome/regular.scss";
+
+html {
+  background: url("../assets/images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  color: white;
+}
