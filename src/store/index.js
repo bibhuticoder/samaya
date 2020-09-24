@@ -7,11 +7,11 @@ import QuoteModule from '@/store/modules/quote';
 import NotePadModule from '@/store/modules/notepad';
 import CalendarModule from '@/store/modules/calendar';
 import SettingsModule from '@/store/modules/settings';
-import VuexPersistence from 'vuex-persist'
+// import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
 
-const vuexLocal = new VuexPersistence({ storage: window.localStorage })
+// const vuexLocal = new VuexPersistence({ storage: window.localStorage })
 
 export default new Vuex.Store({
   state: {
@@ -29,7 +29,7 @@ export default new Vuex.Store({
     calendar: CalendarModule,
     settings: SettingsModule
   },
-  plugins: [vuexLocal.plugin]
+  // plugins: [vuexLocal.plugin]
 })
 
 

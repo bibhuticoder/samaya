@@ -21,12 +21,12 @@ export default {
 
   methods: {
     fetchRandomQuote() {
-      fetch("https://almighty569.github.io/samaya-quotes/quotes/metadata.json")
+      fetch("https://bibhuticoder.github.io/samaya-quotes-api/quotes/metadata.json")
         .then(r => r.json())
         .then(metadata => {
           let randomPage = _.random(1, metadata.totalPages);
           fetch(
-            "https://almighty569.github.io/samaya-quotes/quotes/" +
+            "https://bibhuticoder.github.io/samaya-quotes-api/quotes/" +
               randomPage +
               ".json"
           )
@@ -54,5 +54,7 @@ export default {
 .quote {
   font-size: 1rem;
   color: white;
+  text-align: center;
+  cursor: default;
 }
 </style>

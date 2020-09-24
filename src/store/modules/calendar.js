@@ -3,7 +3,7 @@ import Vue from 'vue'
 export default {
     namespaced: true,
     state: {
-        visibility: true, // true, false
+        visibility: false, // true, false
     },
 
     getters: {

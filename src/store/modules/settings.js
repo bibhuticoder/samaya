@@ -4,7 +4,7 @@ export default {
     namespaced: true,
     state: {
         visibility: true, // true, false
-        selectedMenuItem: null
+        selectedMenuItem: 'clock'
     },
 
     getters: {

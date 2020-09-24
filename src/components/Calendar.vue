@@ -140,6 +140,14 @@ export default {
     .date {
       display: flex;
       justify-content: space-between;
+
+      .dayInMonth{
+        margin-right: 10px;
+      }
+    }
+
+    .dayInWeek{
+      text-align: center;
     }
 
     &:hover {

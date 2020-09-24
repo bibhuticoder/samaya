@@ -25,10 +25,9 @@
       <div class="focusTodayWrapper">
         <FocusToday />
       </div>
-
-      <div class="quoteWrapper">
-        <Quote />
-      </div>
+    </div>
+    <div class="quoteWrapper">
+      <Quote />
     </div>
   </div>
 </template>
@@ -47,7 +46,7 @@ export default {
   name: "Home",
   data: () => {
     return {
-      backgroundImage: null
+      backgroundImage: null,
     };
   },
   components: {
@@ -58,12 +57,12 @@ export default {
     Calendar,
     Greetings,
     FocusToday,
-    Background
+    Background,
   },
 
   created() {},
 
-  methods: {}
+  methods: {},
 };
 </script>
 
@@ -95,21 +94,18 @@ export default {
   .content {
     position: absolute;
     left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
+    top: 50%;
+    // bottom: 100px;
+    transform: translate(-50%, -50%);
     min-width: 500px;
     z-index: 1;
     text-align: center;
-
-    .clockWrapper {
-      // margin-top: 170px;
-    }
-
-    .quoteWrapper {
-      padding-top: 2.5rem;
-      margin-top: 1rem;
-      margin: 0 auto;
-    }
+  }
+  .quoteWrapper {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>

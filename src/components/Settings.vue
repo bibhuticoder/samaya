@@ -4,7 +4,7 @@
       <i class="fal fa-cogs"></i>
     </div>
 
-    <div class="settingsContainer" v-if="visibility">
+    <!-- <div class="settingsContainer" v-if="visibility">
       <div class="settingsNav">
         <div class="settigsNavBody">
           <div
@@ -24,7 +24,7 @@
           <h3>Clock</h3>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -53,7 +53,9 @@ export default {
     };
   },
 
-  created() {},
+  created() {
+
+  },
 
   methods: {
     toggleSettings() {
