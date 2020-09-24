@@ -1,6 +1,11 @@
 # Samaya
 
-Samaya is a productivity focused chrome extension highly inspired by Momentum
+Samaya is a productivity focused chrome extension highly inspired by Momentum. It's not intended to be a clone but an improvement with more Nepali feeling and simplicity.
+
+## View the extension here
+https://chrome.google.com/webstore/detail/samaya/jmpipanemahgfelokjjpdilfcfboinni
+
+Chrome web store has the incomplete version. If you want to use the latest one please follow the instructions below to build use it locally.
 
 ## Key Features
 - Nepali Language
