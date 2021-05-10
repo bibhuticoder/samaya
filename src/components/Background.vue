@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div @click="handleBackgroundClick()">
     <div class="credits">
-      <!-- <p class="photoInfo">{{ metadata.photoAddress }}</p> -->
+      <p class="photoInfo">{{ metadata.photoAddress }}</p>
       <p class="ownerInfo" v-html="metadata.photographerName"></p>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
   },
 
   created() {
-    this.getWallpaper();
+    // this.getWallpaper();
   },
 
   methods: {
@@ -53,7 +53,7 @@ export default {
             "html"
           )[0].style.backgroundImage = `url(${this.backgroundImage})`;
         });
-    },
+    }
   },
 
   computed: {
@@ -75,7 +75,8 @@ export default {
   right: 5px;
   bottom: 5px;
   color: white;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 100;
 
   p {
     margin-top: 0;

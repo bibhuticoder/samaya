@@ -1,20 +1,25 @@
 <template>
   <div class="calendarContainer">
-    <div class="miniCalendar" :class="{'--active': visibility}" @click="toggleFullCal()">
+    <div
+    v-if="calDataMinimal"
+      class="miniCalendar"
+      :class="{ '--active': visibility }"
+      @click="toggleFullCal()"
+    >
       <div class="date">
-        <div class="dayInMonth">{{calData.dayInMonth}}</div>
-        <div class="month">{{calData.month}}</div>
+        <div class="dayInMonth">{{ calDataMinimal.dayInMonth }}</div>
+        <div class="month">{{ calDataMinimal.month }}</div>
       </div>
-      <div class="dayInWeek">{{calData.dayInWeek}}</div>
+      <div class="dayInWeek">{{ calDataMinimal.dayInWeek }}</div>
     </div>
 
     <div class="fullCalendar" v-if="visibility">
       <div class="toolbar">
-        <div class="arrow --left">
+        <div class="arrow --left" @click="changeMonth(-1)">
           <i class="fal fa-chevron-left"></i>
         </div>
-        <div class="monthName">{{calData.month}}</div>
-        <div class="arrow --right">
+        <div class="monthName">{{ calData.month }}, {{ calData.year }}</div>
+        <div class="arrow --right" @click="changeMonth(1)">
           <i class="fal fa-chevron-right"></i>
         </div>
       </div>
@@ -31,8 +36,12 @@
         </thead>
         <tbody>
           <tr v-for="(week, i) in fullCal" :key="i">
-            <td v-for="(day, j) in week" :key="j" :class="{'--today': day == calData.dayInMonthEn}">
-              <span>{{day | npNumber}}</span>
+            <td
+              v-for="(day, j) in week"
+              :key="j"
+              :class="{ '--today': day == calData.dayInMonthEn }"
+            >
+              <span>{{ day | npNumber }}</span>
             </td>
           </tr>
         </tbody>
@@ -53,26 +62,46 @@ export default {
     return {
       showFullCal: false,
       fullCal: null,
-      fullCalMonth: null
+
+      calDataMinimal: null, // internal use
+      calData: null, // to display
+      year: null,
+      month: null,
+      day: null,
     };
   },
 
   created() {
-    this.fullCalMonth = this.calData.monthEn;
     this.computeFullCal();
   },
 
   methods: {
-    computeClockText() {
-      let now = new Date();
-      let hr = now.getHours();
-      if (this.clockFormat == 12) hr = hr % 12 || 12;
-      let mins = now.getMinutes() + "";
-      if (mins.length === 1) mins = "0" + mins;
-      return hr + ":" + mins;
-    },
-
     computeFullCal() {
+      if (this.year == null && this.month == null) {
+        let now = new Date();
+        this.year = now.getFullYear();
+        this.month = now.getMonth();
+        this.day = now.getDate();
+      }
+      let bsData = adbs.ad2bs(
+        this.year + "/" + (this.month + 1) + "/" + (this.day || 1)
+      );
+      this.calData = {
+        year: bsData.ne.year,
+        month: bsData.ne.strMonth,
+        monthEn: bsData.en.month,
+        dayInMonth: bsData.ne.day,
+        dayInMonthEn: this.day ? bsData.en.day : -1, // mark current day on on current month
+        dayInWeek: bsData.ne.strDayOfWeek,
+        dayOfWeekEn: bsData.en.dayOfWeek,
+        totalDaysInMonthEn: bsData.en.totalDaysInMonth,
+      };
+
+      // only first-time computation
+      if (!this.calDataMinimal) {
+        this.calDataMinimal = JSON.parse(JSON.stringify(this.calData));
+      }
+
       let firstDay = this.getFirstDayOfMonth(
         this.calData.dayInMonthEn,
         this.calData.dayOfWeekEn + 1
@@ -88,6 +117,11 @@ export default {
       this.$store.commit("calendar/setVisibility", !this.visibility);
     },
 
+    hide() {
+      this.$store.commit("calendar/setVisibility", false);
+      this.reset();
+    },
+
     getFirstDayOfMonth(date, dayofWeek) {
       while (date > 1) {
         dayofWeek--;
@@ -95,29 +129,37 @@ export default {
         date--;
       }
       return dayofWeek;
-    }
+    },
+
+    changeMonth(by) {
+      this.month = this.month + by;
+
+      if (this.month > 11) {
+        this.year++;
+        this.month = 0;
+      } else if (this.month < 0) {
+        this.year--;
+        this.month = 11;
+      }
+
+      let now = new Date();
+      if (now.getFullYear() == this.year && now.getMonth() == this.month)
+        this.day = now.getDate();
+      else this.day = null;
+
+      this.computeFullCal();
+    },
+
+    reset() {
+      this.year = null;
+      this.month = null;
+      this.computeFullCal();
+    },
   },
 
   computed: {
     ...mapGetters("calendar", ["visibility"]),
-
-    calData() {
-      let now = new Date();
-      let date =
-        now.getFullYear() + "/" + (now.getMonth() + 1) + "/" + now.getDate();
-      let bsData = adbs.ad2bs(date);
-
-      return {
-        month: bsData.ne.strMonth,
-        monthEn: bsData.en.month,
-        dayInMonth: bsData.ne.day,
-        dayInMonthEn: bsData.en.day,
-        dayInWeek: bsData.ne.strDayOfWeek,
-        dayOfWeekEn: bsData.en.dayOfWeek,
-        totalDaysInMonthEn: bsData.en.totalDaysInMonth
-      };
-    }
-  }
+  },
 };
 </script>
 
@@ -129,6 +171,7 @@ export default {
     flex-direction: column;
     color: white;
     font-size: 0.9rem;
+    font-weight: 100;
     cursor: pointer;
     min-width: 40px;
     min-height: 40px;
@@ -141,12 +184,12 @@ export default {
       display: flex;
       justify-content: space-between;
 
-      .dayInMonth{
+      .dayInMonth {
         margin-right: 10px;
       }
     }
 
-    .dayInWeek{
+    .dayInWeek {
       text-align: center;
     }
 
@@ -169,6 +212,7 @@ export default {
     color: #373737;
     border-radius: 5px;
     text-align: center;
+    cursor: default;
 
     &:after {
       content: "";

@@ -1,8 +1,8 @@
 <template>
   <div class="notepad">
-    <div class="toggle" :class="{'--active': visibility}" @click="toggleNotes()">
+    <div class="toggle" :class="{ '--active': visibility }" @click="toggle()">
       <i class="fal fa-clipboard-list-check"></i>
-      <span>Notes</span>
+      <!-- <span>Notes</span> -->
     </div>
 
     <div class="notepadContainer" v-if="visibility">
@@ -15,12 +15,14 @@
           <div class="notepadNavBody">
             <div
               class="notepadNavItem"
-              :class="{'--active': selectedNote && note.id === selectedNote.id}"
+              :class="{
+                '--active': selectedNote && note.id === selectedNote.id,
+              }"
               v-for="note in notesList"
               :key="note.id"
               @click="selectNote(note)"
             >
-              <span>{{note.title || 'titleless 😒'}}</span>
+              <span>{{ note.title || "titleless 😒" }}</span>
               <div class="btnTrash" @click="deleteNote(note.id)">
                 <i class="fal fa-times"></i>
               </div>
@@ -33,7 +35,7 @@
         <div v-if="notes.length">
           <div class="metadata">
             <i class="fal fa-clock"></i>
-            <span>{{noteWrittenAt}}</span>
+            <span>{{ noteWrittenAt }}</span>
           </div>
           <vue-editor
             v-model="editorText"
@@ -71,8 +73,8 @@ export default {
         ["bold", "italic", "underline", "strike"],
         [{ list: "ordered" }, { list: "bullet" }],
         ["code-block"],
-        [{ color: [] }, { background: [] }]
-      ]
+        [{ color: [] }, { background: [] }],
+      ],
     };
   },
 
@@ -84,7 +86,11 @@ export default {
   },
 
   methods: {
-    toggleNotes() {
+    hide() {
+      this.$store.commit("notepad/setVisibility", false);
+    },
+
+    toggle() {
       this.$store.commit("notepad/setVisibility", !this.visibility);
     },
 
@@ -101,7 +107,7 @@ export default {
         title: "New note " + (this.notes.length + 1),
         text: "<h1>" + "New note " + (this.notes.length + 1) + "</h1>",
         createdAt: now,
-        upadatedAt: now
+        upadatedAt: now,
       };
       this.$store.commit("notepad/addNote", note);
       this.$store.commit("notepad/setSelectedNote", note);
@@ -123,10 +129,10 @@ export default {
         title: doc.body.children.length
           ? doc.body.children[0].textContent
           : this.selectedNote.title,
-        updatedAt: now
+        updatedAt: now,
       });
       // this.$store.commit("notepad/setSelectedNote", this.selectedNote);
-    }
+    },
   },
 
   computed: {
@@ -140,8 +146,8 @@ export default {
       if (this.selectedNote)
         return moment(this.selectedNote.createdAt, "x").fromNow();
       return null;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -150,7 +156,7 @@ export default {
 .toggle {
   display: flex;
   flex-direction: column;
-  padding: 0.25rem;
+  padding: 0.5rem;
   color: white;
   border-radius: 3px;
   cursor: pointer;
@@ -159,11 +165,12 @@ export default {
   @include not-selectable;
 
   i {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   span {
     font-size: 0.8rem;
+    font-weight: 100;
   }
 
   &:hover {
@@ -239,7 +246,7 @@ export default {
       font-size: 0.8rem;
       border-radius: 5px;
       cursor: default;
-      @include transition;
+      @include transition-fast;
       @include not-selectable;
 
       &.--active {

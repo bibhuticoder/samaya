@@ -37,7 +37,6 @@ export default {
                 ...randomQuote,
                 fetchedAt: Date.now()
               });
-              console.log(randomQuote);
             });
         });
     }
@@ -52,9 +51,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .quote {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: white;
   text-align: center;
   cursor: default;
+  font-weight: 100;
 }
 </style>

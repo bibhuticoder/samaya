@@ -1,6 +1,6 @@
 <template>
   <div class="greeting">
-    <span>{{greeting}}</span>
+    <span>{{ greeting }}</span>
     <div class="btnEdit" @click="handleEdit()">
       <i class="fal fa-pen"></i>
     </div>
@@ -22,10 +22,10 @@ export default {
   },
 
   methods: {
-    handleEdit(){
-      this.$store.commit('greetings/setName', null);
-      this.$router.push('/');
-    }
+    handleEdit() {
+      this.$store.commit("greetings/setName", null);
+      this.$router.push("/");
+    },
   },
 
   computed: {
@@ -36,7 +36,7 @@ export default {
         morning: "प्रभात",
         noon: "मध्यान्ह",
         evening: "सन्ध्या",
-        night: "रात्री"
+        night: "रात्री",
       };
       let trans;
       let hourNow = new Date().getHours();
@@ -45,9 +45,9 @@ export default {
       else if (hourNow > 16 && hourNow <= 19) trans = translations.evening;
       else if (hourNow > 19 && hourNow <= 24) trans = translations.night;
       // debugger;
-      return prefix + " " + trans + (this.name ? (", " + this.name) : '');
-    }
-  }
+      return prefix + " " + trans + (this.name ? ", " + this.name : "");
+    },
+  },
 };
 </script>
 
@@ -59,6 +59,7 @@ export default {
   font-size: 3rem;
   color: white;
   justify-content: center;
+  cursor: default;
 
   span {
     align-self: center;
@@ -78,7 +79,7 @@ export default {
     @include transition;
   }
 
-  &:hover .btnEdit{
+  &:hover .btnEdit {
     opacity: 1;
     visibility: visible;
   }

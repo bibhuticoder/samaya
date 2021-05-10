@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
+  <div class="home" @click="toggleControls()">
     <Background />
     <div class="notepadWrapper">
-      <NotePad />
+      <NotePad ref="notepad" />
     </div>
 
     <div class="calendarWrapper">
-      <Calendar />
+      <Calendar ref="calendar" />
     </div>
 
     <div class="settingsWrapper">
-      <Settings />
+      <Settings ref="settings" />
     </div>
 
     <div class="content">
@@ -60,9 +60,20 @@ export default {
     Background,
   },
 
-  created() {},
+  created() {
+    document.body.addEventListener("click", (e) => {
+      if(e.target.className == "home"){
+        this.$refs.notepad.hide();
+        this.$refs.calendar.hide();
+      }
+    })
+  },
 
-  methods: {},
+  methods: {
+    toggleControls() {
+      
+    },
+  },
 };
 </script>
 

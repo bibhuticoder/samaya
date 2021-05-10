@@ -7,3 +7,7 @@
 @mixin transition {
   transition: all 0.25s ease-in-out;
 }
+
+@mixin transition-fast {
+  transition: all 0.05s ease-in-out;
+}
