@@ -35,7 +35,7 @@
 <script>
 import Background from "@/components/Background";
 import NotePad from "@/components/NotePad";
-import Settings from "@/components/Settings";
+import Settings from "@/components/Settings/index";
 import Clock from "@/components/Clock";
 import Calendar from "@/components/Calendar";
 import Quote from "@/components/Quote";
@@ -62,17 +62,16 @@ export default {
 
   created() {
     document.body.addEventListener("click", (e) => {
-      if(e.target.className == "home"){
-        this.$refs.notepad.hide();
-        this.$refs.calendar.hide();
+      if (e.target.className == "home") {
+        if (this.$refs.notepad) this.$refs.notepad.hide();
+        if (this.$refs.calendar) this.$refs.calendar.hide();
+        if (this.$refs.settings) this.$refs.settings.hide();
       }
-    })
+    });
   },
 
   methods: {
-    toggleControls() {
-      
-    },
+    toggleControls() {},
   },
 };
 </script>
@@ -82,6 +81,8 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  @include not-selectable;
 
   .notepadWrapper {
     position: absolute;
@@ -106,7 +107,6 @@ export default {
     position: absolute;
     left: 50%;
     top: 50%;
-    // bottom: 100px;
     transform: translate(-50%, -50%);
     min-width: 500px;
     z-index: 1;
@@ -114,7 +114,7 @@ export default {
   }
   .quoteWrapper {
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
   }

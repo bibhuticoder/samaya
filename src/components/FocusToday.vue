@@ -59,6 +59,7 @@ export default {
 <style lang="scss" scoped>
 .focusToday {
   color: white;
+  @include not-selectable;
 
   .focusTodayTitle {
     margin-top: 0;

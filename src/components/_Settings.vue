@@ -1,75 +1,85 @@
 <template>
   <div class="settings">
-    <div class="toggle" :class="{'--active': visibility}" @click="toggleSettings()">
-      <i class="fal fa-cogs"></i>
+    <div
+      class="toggle"
+      :class="{ '--active': visibility }"
+      @click="toggleSettings()"
+    >
+      <i class="fal fa-cog"></i>
     </div>
 
-    <!-- <div class="settingsContainer" v-if="visibility">
+    <div class="settingsContainer" v-if="visibility">
       <div class="settingsNav">
         <div class="settigsNavBody">
-          <div
+          <router-link :to="{name: menuItem.routeName}"
             class="settingsNavItem"
-            :class="{'--active': selectedMenuItem && menuItem.id === selectedMenuItem.id}"
+            :class="{
+              '--active':
+                selectedMenuItem && menuItem.id === selectedMenuItem.id,
+            }"
             v-for="menuItem in menuItems"
             :key="menuItem.id"
             @click="selectMenuItem(menuItem)"
           >
-            <span>{{menuItem.name}}</span>
-          </div>
+            <span>
+              <i class="icon fal" :class="'fa-' + menuItem.icon"></i>
+              {{ menuItem.name }}
+              </span>
+          </router-link>
         </div>
       </div>
 
       <div class="settingsDetails">
-        <div v-if="selectedMenuItem.id === 'clock'">
-          <h3>Clock</h3>
-        </div>
+         <router-view />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { v1 as uuid } from "uuid";
-import moment from "moment";
-// import vueCustomScrollbar from "vue-custom-scrollbar";
 
 export default {
   name: "Settings",
-  components: {
-    // vueCustomScrollbar
-  },
+  components: {},
   data() {
     return {
       menuItems: [
-        { id: "clock", name: "Clock" },
-        { id: "notepad", name: "Notepad" },
-        { id: "calendar", name: "Calendar" },
-        { id: "greeting", name: "Greeting" },
-        { id: "focus-today", name: "Focus Today" },
-        { id: "quote", name: "Quote" },
-        { id: "photographs", name: "Photographs" }
-      ]
+        {
+          id: "clock",
+          name: "Clock",
+          icon: "clock",
+          routeName: "Settings-Clock",
+        },
+        { id: "notepad", name: "Notepad", icon: "clipboard-list-check" },
+        { id: "calendar", name: "Calendar", icon: "calendar-alt" },
+        { id: "greeting", name: "Greeting", icon: "praying-hands" },
+        { id: "focus-today", name: "Focus Today", icon: "check-circle" },
+        { id: "quote", name: "Quote", icon: "quote-right" },
+        { id: "photographs", name: "Photographs", icon: "image-polaroid" },
+      ],
     };
   },
 
-  created() {
-
-  },
+  created() {},
 
   methods: {
     toggleSettings() {
       this.$store.commit("settings/setVisibility", !this.visibility);
     },
 
+    hide() {
+      this.$store.commit("settings/setVisibility", false);
+    },
+
     selectMenuItem(menuItem) {
       this.$store.commit("settings/setSelectedMenuItem", menuItem);
-    }
+    },
   },
 
   computed: {
-    ...mapGetters("settings", ["visibility", "selectedMenuItem"])
-  }
+    ...mapGetters("settings", ["visibility", "selectedMenuItem"]),
+  },
 };
 </script>
 
@@ -87,11 +97,11 @@ export default {
   @include not-selectable;
 
   i {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
 
   span {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   &:hover {
@@ -110,8 +120,8 @@ export default {
   position: absolute;
   left: calc(100% + 10px);
   bottom: 0;
-  height: 400px;
-  width: 600px;
+  height: 300px;
+  width: 450px;
   padding: 0.25rem;
   background-color: $background;
   color: #373737;
@@ -145,16 +155,15 @@ export default {
       width: 120px;
       padding: 0.25rem 0.5rem;
       padding-right: 0.25rem;
+      margin-right: 0.25rem;
       text-align: left;
-      font-size: 0.9rem;
-      border-radius: 5px;
+      font-size: 0.8rem;
       cursor: pointer;
-      @include transition;
+      @include transition-fast;
       @include not-selectable;
 
       &.--active {
         background-color: rgba(white, 0.5);
-        color: $blue;
       }
 
       span {
@@ -165,6 +174,10 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
+      .icon {
+        margin-right: 0.25rem;
+      }
     }
   }
 
@@ -172,8 +185,8 @@ export default {
     position: relative;
     flex: 1;
     background-color: rgba(white, 0.5);
-    // height: 300px;
     border-radius: 5px;
+    padding: 0.5rem;
   }
 }
 </style>

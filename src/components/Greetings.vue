@@ -1,9 +1,7 @@
 <template>
   <div class="greeting">
-    <span>{{ greeting }}</span>
-    <div class="btnEdit" @click="handleEdit()">
-      <i class="fal fa-pen"></i>
-    </div>
+    {{ greeting }}
+    <i class="fal fa-pen btnEdit ml-2" @click="handleEdit()"></i>
   </div>
 </template>
 
@@ -54,34 +52,26 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .greeting {
-  display: flex;
-  margin-top: -3rem;
   font-size: 3rem;
   color: white;
   justify-content: center;
   cursor: default;
-
-  span {
-    align-self: center;
-  }
+  @include not-selectable;
 
   .btnEdit {
-    $size: 30px;
-    height: $size;
-    width: $size;
-    align-self: center;
-    margin-left: 10px;
-    color: rgba($color: white, $alpha: 0.9);
+    color: rgba($color: white, $alpha: 0.8);
     font-size: 1rem;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    @include transition;
+    transform: translate(-100%, 0);
+    transition: opacity 0.25s ease-in-out;
   }
 
   &:hover .btnEdit {
     opacity: 1;
     visibility: visible;
+    transform: translate(0, -50%);
   }
 }
 </style>

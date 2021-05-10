@@ -1,7 +1,7 @@
 <template>
   <div class="calendarContainer">
     <div
-    v-if="calDataMinimal"
+      v-if="calDataMinimal"
       class="miniCalendar"
       :class="{ '--active': visibility }"
       @click="toggleFullCal()"
@@ -39,7 +39,7 @@
             <td
               v-for="(day, j) in week"
               :key="j"
-              :class="{ '--today': day == calData.dayInMonthEn }"
+              :class="{ '--today': day == calData.dayInMonthEn && calData.today }"
             >
               <span>{{ day | npNumber }}</span>
             </td>
@@ -91,7 +91,8 @@ export default {
         month: bsData.ne.strMonth,
         monthEn: bsData.en.month,
         dayInMonth: bsData.ne.day,
-        dayInMonthEn: this.day ? bsData.en.day : -1, // mark current day on on current month
+        dayInMonthEn: bsData.en.day,
+        today : this.day,
         dayInWeek: bsData.ne.strDayOfWeek,
         dayOfWeekEn: bsData.en.dayOfWeek,
         totalDaysInMonthEn: bsData.en.totalDaysInMonth,
@@ -125,7 +126,7 @@ export default {
     getFirstDayOfMonth(date, dayofWeek) {
       while (date > 1) {
         dayofWeek--;
-        if (dayofWeek < 0) dayofWeek = 6;
+        if (dayofWeek === 0) dayofWeek = 7;
         date--;
       }
       return dayofWeek;
@@ -208,6 +209,7 @@ export default {
     top: calc(100% + 10px);
     height: auto;
     width: 250px;
+    padding: 0.25rem;
     background-color: $white-background;
     color: #373737;
     border-radius: 5px;
@@ -243,12 +245,13 @@ export default {
       .monthName {
         flex: 1;
         @include not-selectable;
+        font-size: 0.9rem;
       }
     }
 
     .calTable {
       width: 100%;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       th {
         padding: 0;
         font-weight: normal;

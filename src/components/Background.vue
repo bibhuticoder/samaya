@@ -1,5 +1,5 @@
 <template>
-  <div @click="handleBackgroundClick()">
+  <div>
     <div class="credits">
       <p class="photoInfo">{{ metadata.photoAddress }}</p>
       <p class="ownerInfo" v-html="metadata.photographerName"></p>
@@ -11,7 +11,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "Links",
+  name: "Background",
   props: {},
   data() {
     return {
