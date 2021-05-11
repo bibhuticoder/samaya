@@ -38,8 +38,16 @@ a {
     justify-content: space-between;
   }
 
+  &.justify-content-end{
+    justify-content: flex-end;
+  }
+
   &.flex-1{
     flex-grow: 1;
+  }
+
+  .align-self-center{
+    align-self: center;
   }
 }
 
@@ -53,4 +61,36 @@ a {
 
 .p-relative{
   position: relative;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-sm{
+  font-size: 0.8rem;
+}
+
+.text-vsm{
+  font-size: 0.6rem;
+}
+
+.text-muted{
+  color: gray;
+}
+
+.font-weight-light{
+  font-weight: lighter;
+}
+
+.text-italic{
+  font-style: italic;
+}
+
+.mb-0{
+  margin-bottom: 0;
+}
+
+.mt-0{
+  margin-bottom: 0;
 }

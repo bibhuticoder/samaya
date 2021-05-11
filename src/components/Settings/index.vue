@@ -47,6 +47,7 @@ import SettingsGreetings from "@/components/Settings/greetings.vue";
 import SettingsQuote from "@/components/Settings/quote.vue";
 import SettingsWallpapers from "@/components/Settings/wallpapers.vue";
 import SettingsFocusToday from "@/components/Settings/focusToday.vue";
+import SettingsAbout from "@/components/Settings/about.vue";
 
 import { createHelpers } from "vuex-map-fields";
 
@@ -65,6 +66,7 @@ export default {
     SettingsQuote,
     SettingsWallpapers,
     SettingsFocusToday,
+    SettingsAbout
   },
   data() {
     return {
@@ -110,6 +112,13 @@ export default {
           name: "Wallpapers",
           icon: "image-polaroid",
           component: "SettingsWallpapers",
+        },
+
+        {
+          id: "about",
+          name: "About",
+          icon: "info-circle",
+          component: "SettingsAbout",
         },
       ],
     };
