@@ -15,7 +15,7 @@
 
     <div class="content">
       <div class="clockWrapper">
-        <Clock />
+        <Clock ref="clock" />
       </div>
 
       <div class="greetingsWrapper">
@@ -66,6 +66,7 @@ export default {
         if (this.$refs.notepad) this.$refs.notepad.hide();
         if (this.$refs.calendar) this.$refs.calendar.hide();
         if (this.$refs.settings) this.$refs.settings.hide();
+        if (this.$refs.clock) this.$refs.clock.hide();
       }
     });
   },

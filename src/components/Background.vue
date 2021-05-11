@@ -1,63 +1,79 @@
 <template>
   <div>
-    <div class="credits">
-      <p class="photoInfo">{{ metadata.photoAddress }}</p>
-      <p class="ownerInfo" v-html="metadata.photographerName"></p>
+    <img class="overlay" src="@/assets/images/overlay.png" />
+    <div class="credits" v-if="currentWallpaper">
+      <p class="photoInfo">{{ currentWallpaper.location.name }}</p>
+      <p class="ownerInfo">
+        <span v-if="currentWallpaper.user.name">{{currentWallpaper.user.name}}</span>
+        &nbsp;|&nbsp;
+        <a :href="currentWallpaper.user.links.html" target="_blank" rel="noopener noreferrer">Unsplash</a>
+      </p>
+
+
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {
+  fetchRandomUnsplashImage,
+  getUnsplashImageById,
+  random,
+} from "@/helpers";
+import { createHelpers } from "vuex-map-fields";
+import moment from "moment";
+
+const { mapFields } = createHelpers({
+  getterType: "wallpapers/getField",
+  mutationType: "wallpapers/updateField",
+});
 
 export default {
   name: "Background",
   props: {},
   data() {
-    return {
-      backgroundImage: null,
-      metadata: {
-        photoAddress: "Kathmandu, Nepal",
-        photographerName: 'Bibhuti | <a href="#">Unsplash</a>',
-      },
-    };
+    return {};
   },
 
   created() {
-    // this.getWallpaper();
+    if (this.currentWallpaper) {
+      let stale = moment(this.currentWallpaper.fetchedAt, "x").isBefore(
+        moment().subtract(1, "d")
+      );
+      if (stale) this.renderWallpaper();
+      else
+        document.getElementsByTagName(
+          "html"
+        )[0].style.backgroundImage = `url(${this.currentWallpaper.urls.full})`;
+    } else this.renderWallpaper();
   },
 
   methods: {
-    getWallpaper() {
-      let url = "https://api.unsplash.com/photos/random";
-      let params = {
-        client_id: "lFf5ncgm_N1TG8qqyRbdalnq33ANd-0ZEkRFNfgXQ7I",
-        orientation: "landscape",
-        featured: true,
-        content_filter: "high",
-        collection: "827743,162213,357786",
-      };
-      url =
-        url +
-        "?" +
-        Object.keys(params)
-          .map((p) => p + "=" + params[p])
-          .join("&");
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          this.metadata.photographerName = `${data.user.name} | <a href="${data.user.links.html}" target="_blank">Unsplash</a> `;  
-          this.backgroundImage = data.urls.full;
-          document.getElementsByTagName(
-            "html"
-          )[0].style.backgroundImage = `url(${this.backgroundImage})`;
-        });
-    }
+    async renderWallpaper(fetchData) {
+      let data;
+      if (this.source == "collection") data = await fetchRandomUnsplashImage();
+      else if (this.source == "featured")
+        data = await getUnsplashImageById(
+          this.featuredImages[random(0, this.featuredImages.length)]
+        );
+
+      if (data) {
+        data.fetchedAt = Date.now();
+        this.currentWallpaper = data;
+        document.getElementsByTagName(
+          "html"
+        )[0].style.backgroundImage = `url(${data.urls.full})`;
+      }
+    },
   },
 
   computed: {
-    ...mapGetters("settings", ["clockFormat"]),
+    ...mapFields([
+      "currentWallpaper",
+      "source",
+      "collections",
+      "featuredImages",
+    ]),
   },
 };
 </script>
@@ -81,6 +97,16 @@ export default {
   p {
     margin-top: 0;
     margin-bottom: 0;
+    text-align: right;
   }
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1000;
 }
 </style>

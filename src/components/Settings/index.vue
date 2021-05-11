@@ -45,8 +45,15 @@ import SettingsCalendar from "@/components/Settings/calendar.vue";
 import SettingsNotepad from "@/components/Settings/notepad.vue";
 import SettingsGreetings from "@/components/Settings/greetings.vue";
 import SettingsQuote from "@/components/Settings/quote.vue";
-import SettingsPhotographs from "@/components/Settings/photographs.vue";
+import SettingsWallpapers from "@/components/Settings/wallpapers.vue";
 import SettingsFocusToday from "@/components/Settings/focusToday.vue";
+
+import { createHelpers } from "vuex-map-fields";
+
+const { mapFields } = createHelpers({
+  getterType: "settings/getField",
+  mutationType: "settings/updateField",
+});
 
 export default {
   name: "Settings",
@@ -56,7 +63,7 @@ export default {
     SettingsNotepad,
     SettingsGreetings,
     SettingsQuote,
-    SettingsPhotographs,
+    SettingsWallpapers,
     SettingsFocusToday,
   },
   data() {
@@ -80,18 +87,18 @@ export default {
           icon: "calendar-alt",
           component: "SettingsCalendar",
         },
-        {
-          id: "greeting",
-          name: "Greeting",
-          icon: "praying-hands",
-          component: "SettingsGreetings",
-        },
-        {
-          id: "focus-today",
-          name: "Focus Today",
-          icon: "check-circle",
-          component: "SettingsFocusToday",
-        },
+        // {
+        //   id: "greeting",
+        //   name: "Greetings",
+        //   icon: "praying-hands",
+        //   component: "SettingsGreetings",
+        // },
+        // {
+        //   id: "focus-today",
+        //   name: "Daily Goal",
+        //   icon: "check-circle",
+        //   component: "SettingsFocusToday",
+        // },
         {
           id: "quote",
           name: "Quote",
@@ -99,35 +106,35 @@ export default {
           component: "SettingsQuote",
         },
         {
-          id: "photographs",
-          name: "Photographs",
+          id: "wallpapers",
+          name: "Wallpapers",
           icon: "image-polaroid",
-          component: "SettingsPhotographs",
+          component: "SettingsWallpapers",
         },
       ],
     };
   },
 
   created() {
-    this.$store.commit("settings/setSelectedMenuItem", this.menuItems[0]);
+    this.selectedMenuItem = this.menuItems[0];
   },
 
   methods: {
     toggleSettings() {
-      this.$store.commit("settings/setVisibility", !this.visibility);
+      this.visibility = !this.visibility;
     },
 
     hide() {
-      this.$store.commit("settings/setVisibility", false);
+      this.visibility = false;
     },
 
     selectMenuItem(menuItem) {
-      this.$store.commit("settings/setSelectedMenuItem", menuItem);
+      this.selectedMenuItem = menuItem;
     },
   },
 
   computed: {
-    ...mapGetters("settings", ["visibility", "selectedMenuItem"]),
+    ...mapFields(["visibility", "selectedMenuItem"]),
   },
 };
 </script>
@@ -252,6 +259,23 @@ export default {
       font-size: 0.7rem;
     }
 
+    textarea {
+      font-size: 0.8rem;
+       color: #373737;
+       outline: none;
+    }
+
+    a {
+      color: #373737;
+    }
+
+    .note {
+      margin: 0;
+      background-color: lightgrey;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+    }
+
     .formGroup {
       display: flex;
 
@@ -261,7 +285,7 @@ export default {
         margin-right: 0.25rem;
       }
 
-      label{
+      label {
         align-self: center;
         font-size: 0.8rem;
       }

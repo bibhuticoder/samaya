@@ -1,20 +1,17 @@
-import Vue from 'vue'
+import { getField, updateField } from "vuex-map-fields";
 
 export default {
     namespaced: true,
     state: {
+        visibility: true,
         quote: null
     },
 
     getters: {
-        quote(state) {
-            return state.quote;
-        }
+        getField
     },
 
     mutations: {
-        setQuote(state, quote) {
-            Vue.set(state, 'quote', quote);
-        }
+        updateField
     }
 }

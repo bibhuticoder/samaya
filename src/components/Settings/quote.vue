@@ -1,53 +1,46 @@
 <template>
-<div>
-<h1>Quote Settings</h1>
-</div>
+  <div class="d-flex flex-col h-100">
+    <h1>Quote Settings</h1>
+
+    <div class="d-flex flex-col justify-content-between flex-1">
+      <div>
+        <label class="title">Visibility </label>
+        <Toggle v-model="visibility" :value="visibility" />
+      </div>
+
+      <p class="note">
+        The quotes are fetched from
+        <a href="http://" target="_blank" rel="noopener noreferrer">Samaya Quotes API</a>. If you want to contribute, please visit the
+        <a href="http://" target="_blank" rel="noopener noreferrer"
+          >Contribution Guide</a
+        >.
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { createHelpers } from "vuex-map-fields";
+import Toggle from "@/components/Toggle";
+
+const { mapFields } = createHelpers({
+  getterType: "quote/getField",
+  mutationType: "quote/updateField",
+});
 
 export default {
-  name: "SettingsClock",
-  components: {
-  },
+  name: "SettingsQuote",
+  components: { Toggle },
   data() {
-    return {
-      menuItems: [
-        { id: "clock", name: "Clock", icon: 'clock' },
-        { id: "notepad", name: "Notepad", icon: 'clipboard-list-check' },
-        { id: "calendar", name: "Calendar", icon: 'calendar-alt' },
-        { id: "greeting", name: "Greeting", icon: 'praying-hands' },
-        { id: "focus-today", name: "Focus Today", icon: 'check-circle' },
-        { id: "quote", name: "Quote", icon: 'quote-right' },
-        { id: "photographs", name: "Photographs", icon: 'image-polaroid' },
-      ],
-    };
+    return {};
   },
 
   created() {},
 
-  methods: {
-    toggleSettings() {
-      this.$store.commit("settings/setVisibility", !this.visibility);
-    },
-
-    hide() {
-      this.$store.commit("settings/setVisibility", false);
-    },
-
-    selectMenuItem(menuItem) {
-      this.$store.commit("settings/setSelectedMenuItem", menuItem);
-    },
-  },
+  methods: {},
 
   computed: {
-    ...mapGetters("settings", ["visibility", "selectedMenuItem"]),
+    ...mapFields(["visibility"]),
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-
-</style>

@@ -2,63 +2,54 @@
   <div>
     <h1>Clock Settings</h1>
 
-    <label class="title">Visibility</label>
-    <div class="formGroup">
-      <input
-        type="radio"
-        name="clock-visibility"
-        id="clock-visibility-visible"
-        v-model="visibility"
-        value="visible"
-      />
-      <label for="clock-visibility-visible">Visible</label>
-    </div>
+    <div class="d-flex justify-content-around">
+      <div>
+        <label class="title">Visibility</label>
+        <Toggle
+          v-model="visibility"
+          :value="visibility"
+        />
+      </div>
 
-    <div class="formGroup">
-      <input
-        type="radio"
-        name="clock-visibility"
-        id="clock-visibility-hidden"
-        v-model="visibility"
-        value="hidden"
-      />
-      <label for="clock-visibility-hidden">Hidden</label>
-    </div>
+      <div>
+        <label class="title">Format</label>
+        <Toggle
+          v-model="format"
+          :value="format"
+          lblChecked="12Hr"
+          lblUnchecked="24Hr"
+          :width="55"
+          :config="{ 12: true, 24: false }"
+        />
+      </div>
 
-    <label class="title">Format</label>
-    <div class="formGroup">
-      <input type="radio" name="clock-format" id="clock-format-24" v-model="format" value="24" />
-      <label for="clock-format-24">24 Hr</label>
-    </div>
-
-    <div class="formGroup">
-      <input type="radio" name="clock-format" id="clock-format-12" v-model="format" value="12" />
-      <label for="clock-format-12">12 Hr</label>
-    </div>
-
-    <label class="title">Language</label>
-    <div class="formGroup">
-      <input type="radio" name="clock-lang" id="clock-lang-en" v-model="language" value="en" />
-      <label for="clock-lang-en">English</label>
-    </div>
-
-    <div class="formGroup">
-      <input type="radio" name="clock-lang" id="clock-lang-np" v-model="language" value="np" />
-      <label for="clock-lang-np">नेपाली </label>
+      <div>
+        <label class="title">Language</label>
+        <Toggle
+          v-model="language"
+          :value="language"
+          lblChecked="ने"
+          lblUnchecked="En"
+          :width="45"
+          :config="{ 'en': false, 'np': true }"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { createHelpers } from 'vuex-map-fields';
+import { createHelpers } from "vuex-map-fields";
+import Toggle from "@/components/Toggle";
 
 const { mapFields } = createHelpers({
-  getterType: 'clock/getField',
-  mutationType: 'clock/updateField',
+  getterType: "clock/getField",
+  mutationType: "clock/updateField",
 });
 
 export default {
   name: "SettingsClock",
+  components: { Toggle },
   computed: {
     ...mapFields(["visibility", "language", "format"]),
   },

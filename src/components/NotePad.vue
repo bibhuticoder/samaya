@@ -1,8 +1,7 @@
 <template>
-  <div class="notepad">
+  <div class="notepad" v-if="enable">
     <div class="toggle" :class="{ '--active': visibility }" @click="toggle()">
       <i class="fal fa-clipboard-list-check"></i>
-      <!-- <span>Notes</span> -->
     </div>
 
     <div class="notepadContainer" v-if="visibility">
@@ -55,11 +54,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import Vue from "vue";
 import { v1 as uuid } from "uuid";
 import { VueEditor } from "vue2-editor";
 import moment from "moment";
 import vueCustomScrollbar from "vue-custom-scrollbar";
+
+import { createHelpers } from "vuex-map-fields";
+const { mapFields } = createHelpers({
+  getterType: "notepad/getField",
+  mutationType: "notepad/updateField",
+});
 
 export default {
   name: "NotePad",
@@ -87,15 +92,15 @@ export default {
 
   methods: {
     hide() {
-      this.$store.commit("notepad/setVisibility", false);
+      this.visibility = false;
     },
 
     toggle() {
-      this.$store.commit("notepad/setVisibility", !this.visibility);
+      this.visibility = !this.visibility;
     },
 
     selectNote(note) {
-      this.$store.commit("notepad/setSelectedNote", note);
+      this.selectedNote = note;
       this.editorText = this.selectedNote.text;
     },
 
@@ -109,12 +114,18 @@ export default {
         createdAt: now,
         upadatedAt: now,
       };
-      this.$store.commit("notepad/addNote", note);
-      this.$store.commit("notepad/setSelectedNote", note);
+      this.notes.push(note);
+      this.selectedNote = note;
+      // this.$store.commit("notepad/addNote", note);
+      // this.$store.commit("notepad/setSelectedNote", note);
     },
 
     deleteNote(id) {
-      this.$store.commit("notepad/deleteNote", id);
+      // this.$store.commit("notepad/deleteNote", id);
+      this.notes.splice(
+        this.notes.findIndex((note) => note.id === id),
+        1
+      );
     },
 
     computeNoteTitle() {
@@ -123,20 +134,22 @@ export default {
         "text/html"
       );
       let now = Date.now();
-      this.$store.commit("notepad/updateNote", {
+      let note = {
         ...this.selectedNote,
         text: this.editorText,
         title: doc.body.children.length
           ? doc.body.children[0].textContent
           : this.selectedNote.title,
         updatedAt: now,
-      });
+      };
+      let index = this.notes.findIndex((n) => n.id === note.id);
+      Vue.set(this.notes, index, note);
       // this.$store.commit("notepad/setSelectedNote", this.selectedNote);
     },
   },
 
   computed: {
-    ...mapGetters("notepad", ["visibility", "selectedNote", "notes"]),
+    ...mapFields(["enable", "visibility", "selectedNote", "notes"]),
 
     notesList() {
       return this.notes.slice().reverse();
@@ -151,7 +164,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .toggle {
   display: flex;

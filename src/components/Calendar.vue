@@ -1,5 +1,5 @@
 <template>
-  <div class="calendarContainer">
+  <div class="calendarContainer" v-if="enable">
     <div
       v-if="calDataMinimal"
       class="miniCalendar"
@@ -39,7 +39,9 @@
             <td
               v-for="(day, j) in week"
               :key="j"
-              :class="{ '--today': day == calData.dayInMonthEn && calData.today }"
+              :class="{
+                '--today': day == calData.dayInMonthEn && calData.today,
+              }"
             >
               <span>{{ day | npNumber }}</span>
             </td>
@@ -51,9 +53,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import adbs from "ad-bs-converter";
 import _ from "lodash";
+import { createHelpers } from "vuex-map-fields";
+const { mapFields } = createHelpers({
+  getterType: "calendar/getField",
+  mutationType: "calendar/updateField",
+});
 
 export default {
   name: "Calendar",
@@ -92,7 +98,7 @@ export default {
         monthEn: bsData.en.month,
         dayInMonth: bsData.ne.day,
         dayInMonthEn: bsData.en.day,
-        today : this.day,
+        today: this.day,
         dayInWeek: bsData.ne.strDayOfWeek,
         dayOfWeekEn: bsData.en.dayOfWeek,
         totalDaysInMonthEn: bsData.en.totalDaysInMonth,
@@ -115,11 +121,11 @@ export default {
     },
 
     toggleFullCal() {
-      this.$store.commit("calendar/setVisibility", !this.visibility);
+      this.visibility = !this.visibility;
     },
 
     hide() {
-      this.$store.commit("calendar/setVisibility", false);
+      this.visibility = false;
       this.reset();
     },
 
@@ -159,7 +165,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters("calendar", ["visibility"]),
+    ...mapFields(["visibility", "enable"]),
   },
 };
 </script>

@@ -42,7 +42,6 @@ export default {
       else if (hourNow > 12 && hourNow <= 16) trans = translations.noon;
       else if (hourNow > 16 && hourNow <= 19) trans = translations.evening;
       else if (hourNow > 19 && hourNow <= 24) trans = translations.night;
-      // debugger;
       return prefix + " " + trans + (this.name ? ", " + this.name : "");
     },
   },

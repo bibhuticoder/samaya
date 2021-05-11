@@ -1,20 +1,17 @@
-import Vue from 'vue'
+import { getField, updateField } from "vuex-map-fields";
 
 export default {
     namespaced: true,
     state: {
-        visibility: false, // true, false
+        enable: true,
+        visibility: false,
     },
 
     getters: {
-        visibility(state) {
-            return state.visibility;
-        }
+        getField
     },
 
     mutations: {
-        setVisibility(state, visibility) {
-            Vue.set(state, 'visibility', visibility);
-        }
+        updateField
     }
 }

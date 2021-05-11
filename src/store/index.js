@@ -6,32 +6,13 @@ import FocusTodayModule from '@/store/modules/focusToday';
 import QuoteModule from '@/store/modules/quote';
 import NotePadModule from '@/store/modules/notepad';
 import CalendarModule from '@/store/modules/calendar';
+import WallpapersModule from '@/store/modules/wallpapers';
 import SettingsModule from '@/store/modules/settings';
 import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({ storage: window.localStorage })
-
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-    clock: ClockModule,
-    greetings: GreetingsModule,
-    focusToday: FocusTodayModule,
-    quote: QuoteModule,
-    notepad: NotePadModule,
-    calendar: CalendarModule,
-    settings: SettingsModule
-  },
-  plugins: [vuexLocal.plugin]
-})
-
 
 // const vuexLocal = new VuexPersistence({
 //   storage: {
@@ -57,3 +38,23 @@ export default new Vuex.Store({
 //     },
 //   }
 // })
+
+export default new Vuex.Store({
+  state: {
+  },
+  mutations: {
+  },
+  actions: {
+  },
+  modules: {
+    clock: ClockModule,
+    greetings: GreetingsModule,
+    focusToday: FocusTodayModule,
+    quote: QuoteModule,
+    notepad: NotePadModule,
+    calendar: CalendarModule,
+    wallpapers: WallpapersModule,
+    settings: SettingsModule
+  },
+  plugins: [vuexLocal.plugin]
+})

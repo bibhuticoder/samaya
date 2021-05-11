@@ -14,10 +14,43 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: center;
   background-color: black;
   font-family: 'Mukta', sans-serif;
 }
 
 a {
   color: white;
+}
+
+.d-flex{
+  display: flex;
+
+  &.flex-col{
+    flex-direction: column;
+  }
+
+  &.justify-content-around{
+    justify-content: space-around;
+  }
+
+  &.justify-content-between{
+    justify-content: space-between;
+  }
+
+  &.flex-1{
+    flex-grow: 1;
+  }
+}
+
+.h-100{
+  height: 100%;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.p-relative{
+  position: relative;
 }

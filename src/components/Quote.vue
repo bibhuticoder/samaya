@@ -1,5 +1,5 @@
 <template>
-  <div class="quote" v-if="quote">
+  <div class="quote" v-if="quote && visibility">
     <span class="quoteText">“{{ quote.text }}”</span>
     <span class="quoteAuthor">
       - {{ quote.author || "Unknown" }}
@@ -9,9 +9,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import _ from "lodash";
 import moment from "moment";
+import { createHelpers } from "vuex-map-fields";
+const { mapFields } = createHelpers({
+  getterType: "quote/getField",
+  mutationType: "quote/updateField",
+});
 
 export default {
   name: "Quote",
@@ -41,22 +45,21 @@ export default {
             .then((r) => r.json())
             .then((quotesData) => {
               let randomQuote = quotesData[_.random(0, quotesData.length - 1)];
-              this.$store.commit("quote/setQuote", {
+              this.quote = {
                 ...randomQuote,
                 fetchedAt: Date.now(),
-              });
+              };
             });
         });
     },
   },
 
   computed: {
-    ...mapGetters("quote", ["quote"]),
+    ...mapFields(["quote", "visibility"]),
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .quote {
   position: relative;
