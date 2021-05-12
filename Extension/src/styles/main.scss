@@ -1,0 +1,105 @@
+// Font Awesome
+$fa-font-path: "../assets/webfonts";
+@import "@/styles/vendor/fontawesome/fontawesome.scss";
+@import "@/styles/vendor/fontawesome/solid.scss";
+@import "@/styles/vendor/fontawesome/light.scss";
+@import "@/styles/vendor/fontawesome/brands.scss";
+@import "@/styles/vendor/fontawesome/regular.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+html {
+  font-family: 'Mukta', sans-serif;
+}
+
+a {
+  color: white;
+}
+
+.d-flex {
+  display: flex;
+
+  &.flex-col {
+    flex-direction: column;
+  }
+
+  &.justify-content-around {
+    justify-content: space-around;
+  }
+
+  &.justify-content-between {
+    justify-content: space-between;
+  }
+
+  &.justify-content-end {
+    justify-content: flex-end;
+  }
+
+  &.flex-1 {
+    flex-grow: 1;
+  }
+
+  .align-self-center {
+    align-self: center;
+  }
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: 0.8rem;
+}
+
+.text-vsm {
+  font-size: 0.6rem;
+}
+
+.text-muted {
+  color: gray;
+}
+
+.font-weight-light {
+  font-weight: lighter;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mt-0 {
+  margin-bottom: 0;
+}
+
+.ml-1{
+  margin-left: 0.25rem;
+}
+
+.btn{
+  outline: none;
+  border: none;
+  background-color: $blue;
+  color: white;
+  border-radius: 0.15rem;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  margin: 0.5rem;
+}
