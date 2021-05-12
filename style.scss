@@ -1,0 +1,173 @@
+$blue: #82c7eb;
+$grey-light: #FAFAFA;
+
+
+.container {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p,
+    label,
+    span,
+    div {
+        font-family: 'Nunito', sans-serif;
+    }
+}
+
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: transparent no-repeat center center fixed;
+    background-image: url('./assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1000;
+    }
+
+    #logo {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        color: white;
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 2px grey;
+
+        span {
+            font-size: 0.7rem;
+        }
+    }
+
+    .content {
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 4rem;
+
+        #clock {
+            color: white;
+            font-size: 6rem;
+            font-family: "Rhodium Libre", serif;
+            letter-spacing: 1rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px grey;
+        }
+
+        #greeting {
+            font-size: 2.5rem;
+            color: white;
+            justify-content: center;
+            cursor: default;
+            text-shadow: 1px 1px 2px grey;
+        }
+    }
+
+    #credits {
+        position: absolute;
+        right: 0.5rem;
+        bottom: 0.5rem;
+        color: white;
+        font-size: 0.7rem;
+        text-shadow: 1px 1px 2px grey;
+
+        a {
+            color: white;
+        }
+    }
+
+    .btnCta {
+        outline: none;
+        border: none;
+        background-color: $blue;
+        color: white;
+        border-radius: 0.15rem;
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        margin: 0.5rem;
+        text-decoration: none;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .text-white {
+        color: white;
+        text-shadow: 1px 1px 2px grey;
+    }
+}
+
+#why {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    background-color: $grey-light;
+    box-shadow: 1px -2px 3px rgba(255, 255, 255, .5);
+    margin-top: -1rem;
+
+    p.lead {
+        width: 100%;
+        max-width: 768px;
+        margin: 0 auto;
+    }
+}
+
+#contribution {
+    .container {
+        width: 100%;
+        max-width: 768px;
+        margin: 0 auto;
+    }
+
+}
+
+a {
+    color: $blue;
+
+    &:hover {
+        color: $blue;
+    }
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    margin: 0 auto;
+    z-index: 2;
+
+    &::after {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0;
+        content: "";
+        display: block;
+        background-color: $blue;
+        width: 100%;
+        height: 0.25rem;
+        z-index: -1;
+    }
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.note {
+    margin: 0;
+    background-color: $grey-light;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+  }

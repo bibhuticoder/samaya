@@ -1,0 +1,166 @@
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container p,
+.container label,
+.container span,
+.container div {
+  font-family: 'Nunito', sans-serif;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: transparent no-repeat center center fixed;
+  background-image: url("./assets/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+}
+
+.hero #logo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px grey;
+}
+
+.hero #logo span {
+  font-size: 0.7rem;
+}
+
+.hero .content {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.hero .content #clock {
+  color: white;
+  font-size: 6rem;
+  font-family: "Rhodium Libre", serif;
+  letter-spacing: 1rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px grey;
+}
+
+.hero .content #greeting {
+  font-size: 2.5rem;
+  color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: default;
+  text-shadow: 1px 1px 2px grey;
+}
+
+.hero #credits {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  color: white;
+  font-size: 0.7rem;
+  text-shadow: 1px 1px 2px grey;
+}
+
+.hero #credits a {
+  color: white;
+}
+
+.hero .btnCta {
+  outline: none;
+  border: none;
+  background-color: #82c7eb;
+  color: white;
+  border-radius: 0.15rem;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.hero .btnCta:hover {
+  color: white;
+}
+
+.hero .text-white {
+  color: white;
+  text-shadow: 1px 1px 2px grey;
+}
+
+#why {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  background-color: #FAFAFA;
+  -webkit-box-shadow: 1px -2px 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 1px -2px 3px rgba(255, 255, 255, 0.5);
+  margin-top: -1rem;
+}
+
+#why p.lead {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+#contribution .container {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+a {
+  color: #82c7eb;
+}
+
+a:hover {
+  color: #82c7eb;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  position: relative;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.title::after {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  content: "";
+  display: block;
+  background-color: #82c7eb;
+  width: 100%;
+  height: 0.25rem;
+  z-index: -1;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.note {
+  margin: 0;
+  background-color: #FAFAFA;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+/*# sourceMappingURL=style.css.map */

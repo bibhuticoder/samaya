@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <title>Samaya</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Rhodium+Libre&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="hero">
+
+        <img class="overlay" src="./assets/overlay.png" />
+
+        <p id="logo">
+            Samaya
+            <span class="version">1.0.0</span>
+        </p>
+
+        <div class="content d-flex flex-column h-100">
+            <div class="clock w-100 mt-5 text-white">
+                <p id="clock" class="text-center mb-0"></p>
+            </div>
+
+            <p id="greeting" class="text-center text-white"></p>
+
+            <p class="lead mt-4 text-white text-center">
+                Samaya is a friendly personal dashboard featuring Nepali calendar, daily
+                Nepali quotes & Nepali wallpapers.
+            </p>
+
+            <div class="btnActionContainer text-center mt-5">
+                <a class="btnCta" href="https://chrome.google.com/webstore/detail/samaya/jmpipanemahgfelokjjpdilfcfboinni" target="_blank">
+                    Download Extension
+                </a>
+            </div>
+        </div>
+        <div id="credits" class="text-right d-flex flex-column">
+            <span> Gokyo Lake, Khumjung, Nepal</span>
+            <p class="text-right mb-0">Chinh Le Duc |
+                <a href="https://unsplash.com/@mero_dnt" target="_blank" rel="noopener noreferrer">Unsplash</a>
+            </p>
+        </div>
+
+
+    </section>
+
+
+    <section id="why">
+        <div class="container mt-5">
+            <div class="text-center">
+                <span class="title">Why "Samaya"</span>
+            </div>
+
+            <p class="lead text-center mt-5 ml-4">
+                Samaya is a hobby project developed as an alternative for
+                <a href="http://" target="_blank" rel="noopener noreferrer">Momentum</a>, as a more familiar(native)
+                version. Nepali calendar, nepali quotes, nepali wallpapers; looking at native stuffs on a piece of tech
+                you use daily, gives a different kind of satisfaction.
+            </p>
+        </div>
+    </section>
+
+    <section id="contribution" class="mt-5">
+        <div class="container">
+            <div class="text-center">
+                <span class="title">
+                    Contribution guide
+                </span>
+            </div>
+
+            <p class="lead text-center mt-5">
+                Excited to hear that you are interested in contributing to this project!
+            </p>
+
+            <div class="row mt-5">
+                <div class="col-12 col-md-6">
+                    <p class="lead text-center font-bold">Contribute to code</p>
+
+                    <ul>
+                        <li class="mb-3">
+                            Samaya is an open source project. The extension is built with Vuejs(2) & SCSS. Please refer
+                            to
+                            <a href="https://github.com/bibhuticoder/samaya" target="_blank"
+                                rel="noopener noreferrer">Github repo</a>
+                            for more technical details.
+                        </li>
+
+                        <li class="mb-3">
+                            Wallpapers are fetched from
+                            <a href="https://unsplash.com/developers" target="_blank" rel="noopener noreferrer">Unsplash
+                                API</a>
+                            . Extension is built to load relevant images
+                            from a set of Unsplash collections, defined in settings.
+                        </li>
+
+                        <li>
+                            Random Nepali quotes are loaded daily from <a
+                                href="https://github.com/bibhuticoder/samaya-quotes-api" target="_blank"
+                                rel="noopener noreferrer">Samaya Quotes API</a>. Please refer to its documentation for
+                            more details or check the
+                            dedicated <a
+                                href="https://github.com/bibhuticoder/samaya-quotes-api/blob/master/CONTRIBUTING.md"
+                                target="_blank" rel="noopener noreferrer">contribution guide</a>.
+                        </li>
+                    </ul>
+
+                    <p class="note text-muted m-3 text-center">
+                        Any kind of suggestions from technical perspective are highly welcome.
+                    </p>
+
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <p class="lead font-weight-bold text-center font-bold">Supporting Materials</p>
+
+                    <ul>
+                        <li class="mb-3">
+                            Do you have passion for collecting
+                            <span class="font-bold">Nepali Quotes</span>? This project needs your help to deliver daily inspirational quotes to its users.
+                        </li>
+
+                        <li class="mb-3">
+                            This project is always in search of <span class="font-bold">HD Nepali landscape
+                                wallpapers</span>. If you have relevant photographs
+                            on
+                            <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>, or it can be published there, 
+                            please contact us.
+                        </li>
+
+                        <li>
+                            Bug reports, changes to existing features, addition of new features etc. are always welcome.
+                        </li>
+                    </ul>
+
+                    <p class="note text-muted m-3 text-center">
+                        To contribute for supporting materials, please contact the developer
+                        <a href="mailto:bibhutipd@gmail.com">bibhutipd@gmail.com</a>.
+                    </p>
+
+                </div>
+            </div>
+
+            <p class="mt-5 text-center">
+                Developed & maintained with
+
+                <img src="./assets/heart.png" style="width: 16px; height: 16px">
+
+                by <a href="https://github.com/bibhuticoder" target="_blank" rel="noopener noreferrer">Bibhuti
+                    Poudyal</a>
+
+
+            </p>
+        </div>
+    </section>
+
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
