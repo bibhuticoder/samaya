@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { getField, updateField } from "vuex-map-fields";
 
 export default {
     namespaced: true,
@@ -10,14 +10,10 @@ export default {
     },
 
     getters: {
-        focus(state) {
-            return state.focus;
-        }
+        getField
     },
 
     mutations: {
-        setFocus(state, focus) {
-            Vue.set(state, 'focus', focus);
-        }
+        updateField
     }
 }

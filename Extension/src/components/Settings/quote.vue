@@ -10,8 +10,8 @@
 
       <p class="note">
         The quotes are fetched from
-        <a href="http://" target="_blank" rel="noopener noreferrer">Samaya Quotes API</a>. If you want to contribute, please visit the
-        <a href="http://" target="_blank" rel="noopener noreferrer"
+        <a href="https://bibhuticoder.github.io/samaya-quotes-api/" target="_blank" rel="noopener noreferrer">Samaya Quotes API</a>. If you want to contribute, please visit the
+        <a href="https://bibhuticoder.github.io/samaya/#contribution" target="_blank" rel="noopener noreferrer"
           >Contribution Guide</a
         >.
       </p>

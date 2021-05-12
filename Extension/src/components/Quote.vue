@@ -3,7 +3,16 @@
     <span class="quoteText">“{{ quote.text }}”</span>
     <span class="quoteAuthor">
       - {{ quote.author || "Unknown" }}
-      <i class="fal fa-hand-holding-heart btnSupport" title="Support Samaya"></i>
+
+      <a
+        href="https://bibhuticoder.github.io/samaya/#contribution"
+        target="_blank"
+        rel="noopener noreferrer"
+        ><i
+          class="fal fa-hand-holding-heart btnSupport"
+          title="Support Samaya"
+        ></i
+      ></a>
     </span>
   </div>
 </template>
@@ -81,13 +90,13 @@ export default {
     transition: all 0.5s ease-in-out;
   }
 
-  .btnSupport{
+  .btnSupport {
     cursor: pointer;
     margin-left: 0.5rem;
     opacity: 0.6;
     @include transition;
 
-    &:hover{
+    &:hover {
       opacity: 1;
     }
   }

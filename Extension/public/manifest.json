@@ -2,9 +2,6 @@
     "manifest_version": 2,
     "name": "Samaya",
     "version": "0.0.1",
-    "permissions": [
-        "storage"
-    ],
     "chrome_url_overrides": {
         "newtab": "index.html"
     },

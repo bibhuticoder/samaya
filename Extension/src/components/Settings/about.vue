@@ -6,9 +6,15 @@
         <span class="text-vsm">v1.0.0</span>
       </h1>
 
+      <div class="text-center">
+        <img
+          src="@/assets/images/icon.png"
+          style="width: 48px; height: 48px"
+        />
+      </div>
+
       <p class="text-center">
-        Friendly personal dashboard featuring Nepali Calendar, Notes, Daily
-        Nepali quotes, Nepali wallpapers.
+        Friendly personal dashboard featuring Nepali calendar, daily Nepali quotes & Nepali wallpapers.
         <br />
         <span class="text-muted font-weight-light text-italic"
           >Inspired by Momentum</span
@@ -20,7 +26,10 @@
         support this project by any means possible.
         <br />
         Please visit our
-        <a href="http://" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://bibhuticoder.github.io/samaya/#contribution"
+          target="_blank"
+          rel="noopener noreferrer"
           >Contribution Guide
         </a>
         for more details.

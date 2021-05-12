@@ -3,15 +3,19 @@
     <div v-if="focus.value">
       <p class="focusTodayTitle">आज</p>
       <div class="checkboxWrapper">
-        <CheckBox :label="focus.value" @cancelled="handleCancel()" @refreshed="handleRefresh()" />
+        <CheckBox
+          :label="focus.value"
+          @cancelled="handleCancel()"
+          @refreshed="handleRefresh()"
+        />
       </div>
     </div>
     <div v-else>
-      <p class="question">{{question}}</p>
+      <p class="question">{{ question }}</p>
       <input
         type="text"
         class="answer"
-        @keyup.enter="(e) => focus.value = e.target.value"
+        @keyup.enter="handleFocusChange"
         spellcheck="false"
       />
     </div>
@@ -20,42 +24,43 @@
 
 <script>
 import CheckBox from "@/components/CheckBox";
-import { mapGetters } from "vuex";
+import { createHelpers } from "vuex-map-fields";
+const { mapFields } = createHelpers({
+  getterType: "focusToday/getField",
+  mutationType: "focusToday/updateField",
+});
 
 export default {
-  name: "Calendar",
+  name: "FocusToday",
   components: { CheckBox },
   props: {},
   data() {
     return {
-      question: "आजको लागि तिम्रो मुख्य काम के हो?",
-      focus: {
-        value: null,
-        done: false
-      }
+      question: "आजको लागि तिम्रो मुख्य काम के हो ?",
     };
   },
 
-  created() {
-    // this.startClock();
-  },
+  created() {},
 
   methods: {
     handleCancel() {
-      this.focus.value = null;
+      this.focus = { ...this.focus, value: null };
     },
     handleRefresh() {
-      this.focus.value = null;
-    }
+      this.focus = { ...this.focus, value: null };
+    },
+
+    handleFocusChange(e) {
+      this.focus = { ...this.focus, value: e.target.value };
+    },
   },
 
   computed: {
-    ...mapGetters("settings", ["clockFormat"])
-  }
+    ...mapFields(["focusToday", "focus"]),
+  },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .focusToday {
   color: white;

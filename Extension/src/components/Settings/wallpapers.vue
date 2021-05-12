@@ -58,9 +58,9 @@
 
       <p class="note">
         The wallpapers are loaded from
-        <a href="http://" target="_blank" rel="noopener noreferrer">Unsplash</a>
+        <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
         . If you want to contribute, please visit the
-        <a href="http://" target="_blank" rel="noopener noreferrer"
+        <a href="https://bibhuticoder.github.io/samaya/#contribution" target="_blank" rel="noopener noreferrer"
           >Contribution Guide</a
         >.
       </p>
