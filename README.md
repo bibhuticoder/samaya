@@ -2,12 +2,13 @@
 
 Samaya is a friendly personal dashboard featuring Nepali calendar, daily Nepali quotes & Nepali wallpapers.
 
-## View the extension here
+## Download chrome extension
 https://chrome.google.com/webstore/detail/samaya/jmpipanemahgfelokjjpdilfcfboinni
 
 ## Project setup & deployement
 
 The Vuejs project for extension is inside the `Extension` folder.
+`index.html` at root is the landing page.
 
 ### Setup
 ```
