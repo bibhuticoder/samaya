@@ -13,7 +13,7 @@
     <div class="notepadContainer" v-if="visibility">
       <div class="notepadNav">
         <div class="notepadNavHeader" @click="addNote()">
-          <i class="fal fa-plus"></i>
+          <i class="fal fa-plus-circle"></i>
           New Note
         </div>
         <vue-custom-scrollbar>
@@ -23,11 +23,10 @@
               :class="{
                 '--active': selectedNote && note.id === selectedNote.id,
               }"
-              v-for="note in notesList"
+              v-for="note in notes"
               :key="note.id"
-              @click="selectNote(note)"
             >
-              <span>{{ note.title || "titleless 😒" }}</span>
+              <span @click="selectNote(note)">{{ note.title }}</span>
               <div class="btnTrash" @click="deleteNote(note.id)">
                 <i class="fal fa-times"></i>
               </div>
@@ -90,10 +89,7 @@ export default {
   },
 
   created() {
-    if (!this.notes.length) {
-      this.addNote();
-      this.selectNote(this.notes[0]);
-    } else this.editorText = this.selectedNote.text;
+    if (!this.notes.length) this.addNote();
   },
 
   methods: {
@@ -115,23 +111,19 @@ export default {
       let now = Date.now();
       let note = {
         id: uuid(),
-        title: "New note " + (this.notes.length + 1),
-        text: "<h1>" + "New note " + (this.notes.length + 1) + "</h1>",
+        title: "New note",
+        text: "<p> New note </p>",
         createdAt: now,
         upadatedAt: now,
       };
       this.notes.push(note);
-      this.selectedNote = note;
-      // this.$store.commit("notepad/addNote", note);
-      // this.$store.commit("notepad/setSelectedNote", note);
+      this.selectNote(note);
     },
 
     deleteNote(id) {
-      // this.$store.commit("notepad/deleteNote", id);
-      this.notes.splice(
-        this.notes.findIndex((note) => note.id === id),
-        1
-      );
+      let index = this.notes.findIndex((note) => note.id === id);
+      this.notes.splice(index, 1);
+      if (index > 0) this.selectNote(this.notes[index - 1]);
     },
 
     computeNoteTitle() {
@@ -139,27 +131,21 @@ export default {
         this.editorText.slice(0, 100),
         "text/html"
       );
-      let now = Date.now();
       let note = {
         ...this.selectedNote,
         text: this.editorText,
         title: doc.body.children.length
           ? doc.body.children[0].textContent
           : this.selectedNote.title,
-        updatedAt: now,
+        updatedAt: Date.now(),
       };
       let index = this.notes.findIndex((n) => n.id === note.id);
       Vue.set(this.notes, index, note);
-      // this.$store.commit("notepad/setSelectedNote", this.selectedNote);
     },
   },
 
   computed: {
     ...mapFields(["enable", "visibility", "selectedNote", "notes"]),
-
-    notesList() {
-      return this.notes.slice().reverse();
-    },
 
     noteWrittenAt() {
       if (this.selectedNote)
@@ -242,9 +228,13 @@ export default {
       text-align: left;
       font-size: 0.8rem;
       cursor: pointer;
-      color: $black;
+      color: $black-1;
       @include not-selectable;
       font-weight: bold;
+
+      &:hover{
+        color: $black;
+      }
 
       i {
         margin-right: 5px;
@@ -254,18 +244,16 @@ export default {
     .notepadNavItem {
       display: flex;
       justify-content: space-between;
-      width: 100px;
-      padding: 0.15rem 0.5rem;
-      padding-right: 0.25rem;
+      width: 110px;
       text-align: left;
       font-size: 0.8rem;
       border-radius: 2.5px;
-      cursor: default;
-      // @include transition-fast;
+      cursor: pointer;
       @include not-selectable;
 
       &.--active {
-        background-color: rgba(white, 0.5);
+        background-color: $blue;
+        color: white;
 
         .btnTrash {
           opacity: 1;
@@ -278,11 +266,14 @@ export default {
 
       span {
         flex: 1;
-        max-width: 90px;
+        max-width: 100px;
         align-self: center;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        padding: 0.15rem 0.5rem;
+        padding-right: 0.25rem;
       }
 
       .btnTrash {
@@ -292,6 +283,7 @@ export default {
         height: $size;
         line-height: $size;
         margin-left: 5px;
+        margin-right: 5px;
         font-size: 0.7rem;
         text-align: center;
         opacity: 0;

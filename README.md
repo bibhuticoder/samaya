@@ -35,3 +35,15 @@ npm run build
 - [x] Build static JSON quotes api(splits data into chunks - chunk_1.json, chunk_2.json...)
 - [x] Application settings
 - [ ] Contributors for photographs & Quotes
+
+
+### Change Log
+
+#### 1.0.0
+
+- Initial Release
+
+#### 1.0.1 
+- Adds background overlay & text shadow to make the text more visible/readable
+- Changes current day highlight on calendar to blue
+- Minor bug fixes for notepad

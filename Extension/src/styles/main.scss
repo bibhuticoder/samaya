@@ -88,11 +88,11 @@ a {
   margin-bottom: 0;
 }
 
-.ml-1{
+.ml-1 {
   margin-left: 0.25rem;
 }
 
-.btn{
+.btn {
   outline: none;
   border: none;
   background-color: $blue;
@@ -102,4 +102,8 @@ a {
   padding: 0.25rem 0.5rem;
   cursor: pointer;
   margin: 0.5rem;
+}
+
+.text-shadow {
+  @include text-shadow;
 }

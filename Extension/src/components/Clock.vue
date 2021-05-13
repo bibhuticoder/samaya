@@ -1,7 +1,7 @@
 <template>
   <div class="clock" v-if="visibility">
-    <span v-if="language == 'np'">{{ timeTxt | npNumber }}</span>
-    <span v-else>{{ timeTxt }}</span>
+    <span v-if="language == 'np'" class="text-shadow">{{ timeTxt | npNumber }}</span>
+    <span v-else class="text-shadow">{{ timeTxt }}</span>
 
     <div
       class="p-relative btnEdit ml-2"
@@ -116,7 +116,7 @@ export default {
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
-    transform: translate(100%, -100%);
+    transform: translate(0, -100%);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease-in-out;

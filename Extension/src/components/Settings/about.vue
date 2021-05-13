@@ -3,7 +3,7 @@
     <div class="d-flex flex-col justify-content-between h-100">
       <h1 class="text-center">
         Samaya
-        <span class="text-vsm">v1.0.0</span>
+        <span class="text-vsm">v1.0.1</span>
       </h1>
 
       <div class="text-center">

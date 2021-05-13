@@ -1,5 +1,5 @@
 <template>
-  <div class="greeting">
+  <div class="greeting text-shadow">
     {{ greeting }}
     <i class="fal fa-pen btnEdit ml-2" @click="handleEdit()"></i>
   </div>

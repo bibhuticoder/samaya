@@ -1,5 +1,5 @@
 <template>
-  <div class="intro">
+  <div class="intro text-shadow">
      <Background />
 
     <div class="inputContainer">

@@ -1,5 +1,5 @@
 <template>
-  <div class="focusToday">
+  <div class="focusToday text-shadow">
     <div v-if="focus.value">
       <p class="focusTodayTitle">आज</p>
       <div class="checkboxWrapper">

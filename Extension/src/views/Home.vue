@@ -62,7 +62,7 @@ export default {
 
   created() {
     document.body.addEventListener("click", (e) => {
-      if (e.target.className == "home") {
+      if (e.target.className == "overlay") {
         if (this.$refs.notepad) this.$refs.notepad.hide();
         if (this.$refs.calendar) this.$refs.calendar.hide();
         if (this.$refs.settings) this.$refs.settings.hide();

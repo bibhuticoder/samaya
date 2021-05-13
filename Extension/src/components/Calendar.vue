@@ -178,7 +178,6 @@ export default {
     flex-direction: column;
     color: white;
     font-size: 0.9rem;
-    font-weight: 100;
     cursor: pointer;
     min-width: 40px;
     min-height: 40px;
@@ -186,6 +185,7 @@ export default {
     border-radius: 3px;
     @include transition;
     @include not-selectable;
+    @include text-shadow;
 
     .date {
       display: flex;
@@ -270,7 +270,8 @@ export default {
         &.--today {
           span {
             display: block;
-            background-color: white;
+            background-color: $blue;
+            color: white;
             border-radius: 3px;
           }
         }

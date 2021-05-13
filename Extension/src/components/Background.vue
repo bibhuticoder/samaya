@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="overlay" src="@/assets/images/overlay.png" />
+    <div class="overlay"></div>
     <div id="background" ref="background"></div>
     <div class="credits" v-if="currentWallpaper">
       <p class="photoInfo">{{ currentWallpaper.location.name }}</p>
@@ -129,6 +129,12 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1000;
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(182, 182, 182, 1) 100%
+  );
+  opacity: 0.2;
 }
 </style>

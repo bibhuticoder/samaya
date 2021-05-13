@@ -1,5 +1,5 @@
 <template>
-  <div class="quote" v-if="quote && visibility">
+  <div class="quote text-shadow" v-if="quote && visibility">
     <span class="quoteText">“{{ quote.text }}”</span>
     <span class="quoteAuthor">
       - {{ quote.author || "Unknown" }}

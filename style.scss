@@ -33,7 +33,9 @@ $grey-light: #FAFAFA;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: -1000;
+        z-index: 1;
+        opacity: 0.1;
+        background-color: #373737;
     }
 
     #logo {
@@ -43,17 +45,24 @@ $grey-light: #FAFAFA;
         color: white;
         font-size: 1.5rem;
         text-shadow: 1px 1px 2px grey;
+        z-index: 2;
 
-        span {
+        span.appName {
+            font-size: 1.5rem;
+        }
+
+        span.version {
             font-size: 0.7rem;
         }
     }
 
     .content {
+        position: relative;
         max-width: 500px;
         width: 100%;
         margin: 0 auto;
         padding-top: 4rem;
+        z-index: 2;
 
         #clock {
             color: white;
@@ -61,7 +70,6 @@ $grey-light: #FAFAFA;
             font-family: "Rhodium Libre", serif;
             letter-spacing: 1rem;
             text-align: center;
-            text-shadow: 1px 1px 2px grey;
         }
 
         #greeting {
@@ -69,7 +77,6 @@ $grey-light: #FAFAFA;
             color: white;
             justify-content: center;
             cursor: default;
-            text-shadow: 1px 1px 2px grey;
         }
     }
 
@@ -79,7 +86,7 @@ $grey-light: #FAFAFA;
         bottom: 0.5rem;
         color: white;
         font-size: 0.7rem;
-        text-shadow: 1px 1px 2px grey;
+        z-index: 2;
 
         a {
             color: white;
