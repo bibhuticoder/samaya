@@ -35,6 +35,7 @@ npm run build
 - [x] Build static JSON quotes api(splits data into chunks - chunk_1.json, chunk_2.json...)
 - [x] Application settings
 - [ ] Contributors for photographs & Quotes
+- [ ] Wallpaper preview when hovered on photoprapher info
 
 
 ### Change Log
