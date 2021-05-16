@@ -76,7 +76,6 @@ export default {
   components: { VueEditor, vueCustomScrollbar },
   data() {
     return {
-      showNotes: false,
       editorText: null,
       customToolbar: [
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -90,6 +89,7 @@ export default {
 
   created() {
     if (!this.notes.length) this.addNote();
+    if (this.selectedNote) this.selectNote(this.selectedNote);
   },
 
   methods: {
@@ -232,7 +232,7 @@ export default {
       @include not-selectable;
       font-weight: bold;
 
-      &:hover{
+      &:hover {
         color: $black;
       }
 

@@ -47,3 +47,8 @@ npm run build
 - Adds background overlay & text shadow to make the text more visible/readable
 - Changes current day highlight on calendar to blue
 - Minor bug fixes for notepad
+
+#### 1.0.2
+- Fixes Nepali calendar bug
+- "selected note not rendered on creation" bug fixed
+- Updates unsplash collections list & featured wallpapers

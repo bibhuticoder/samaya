@@ -39,9 +39,7 @@
             <td
               v-for="(day, j) in week"
               :key="j"
-              :class="{
-                '--today': day == calData.dayInMonthEn && calData.today,
-              }"
+              :class="{ '--today': isToday(day) }"
             >
               <span>{{ day | npNumber }}</span>
             </td>
@@ -98,7 +96,6 @@ export default {
         monthEn: bsData.en.month,
         dayInMonth: bsData.ne.day,
         dayInMonthEn: bsData.en.day,
-        today: this.day,
         dayInWeek: bsData.ne.strDayOfWeek,
         dayOfWeekEn: bsData.en.dayOfWeek,
         totalDaysInMonthEn: bsData.en.totalDaysInMonth,
@@ -139,20 +136,34 @@ export default {
     },
 
     changeMonth(by) {
-      this.month = this.month + by;
+      // change month in Nep calendar
 
-      if (this.month > 11) {
-        this.year++;
-        this.month = 0;
-      } else if (this.month < 0) {
-        this.year--;
-        this.month = 11;
+      if (by == -1) {
+        this.day = this.day - this.calData.dayInMonthEn;
+
+        if (this.day <= 0) {
+          this.day = new Date(this.year, this.month, 0).getDate() + this.day;
+
+          this.month--;
+          if (this.month < 0) {
+            this.year--;
+            this.month = 11;
+          }
+        }
+      } else if (by == 1) {
+        this.day =
+          this.day +
+          (this.calData.totalDaysInMonthEn - this.calData.dayInMonthEn + 1);
+
+        if (this.day >= new Date(this.year, this.month, 0).getDate()) {
+          this.month++;
+          if (this.month > 11) {
+            this.year++;
+            this.month = 0;
+          }
+          this.day = this.day - new Date(this.year, this.month, 0).getDate();
+        }
       }
-
-      let now = new Date();
-      if (now.getFullYear() == this.year && now.getMonth() == this.month)
-        this.day = now.getDate();
-      else this.day = null;
 
       this.computeFullCal();
     },
@@ -161,6 +172,14 @@ export default {
       this.year = null;
       this.month = null;
       this.computeFullCal();
+    },
+
+    isToday(day) {
+      return (
+        this.calData.year === this.calDataMinimal.year &&
+        this.calData.month === this.calDataMinimal.month &&
+        day == this.calDataMinimal.dayInMonthEn
+      );
     },
   },
 

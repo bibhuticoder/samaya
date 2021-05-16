@@ -75,7 +75,7 @@ export default {
         this.$refs.background.style.backgroundImage = `url(${existsAtCache})`;
       } else {
         cacheImage(
-          this.currentWallpaper.urls.regular,
+          this.currentWallpaper.urls.regualr,
           "background_image",
           () => {
             this.$refs.background.style.backgroundImage = `url(${localStorage.getItem(
