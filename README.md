@@ -1,32 +1,50 @@
-# Samaya
+<p align="center">
+  <img src="https://bibhuticoder.github.io/samaya/assets/favicon.png" align="center" style="margin: 0 auto" />
+</p>
 
-Samaya is a friendly personal dashboard featuring Nepali calendar, daily Nepali quotes & Nepali wallpapers.
 
-## Download chrome extension
+
+<h1 align="center">Samaya</h1>
+
+<h2 align="center">Samaya is a friendly personal dashboard featuring Nepali calendar, daily Nepali quotes & Nepali wallpapers.</h1>
+
+<br/>
+
+## Download extension
+### Chrome 
 https://chrome.google.com/webstore/detail/samaya/jmpipanemahgfelokjjpdilfcfboinni
+### Firefox
+https://addons.mozilla.org/en-GB/firefox/addon/samaya/
 
 ## Project setup & deployement
 
 The Vuejs project for extension is inside the `Extension` folder.
 `index.html` at root is the landing page.
 
-### Setup
+### Setup & Dev
 ```
+git clone git@github.com:bibhuticoder/samaya.git
+cd samaya
 npm install
-
 npm run serve
 ```
 
-### Deployemnt to chrome extensions
-
+### Build extension
 ```
 npm run build
+```
 
-// To install on chrome
+### Run as chrome extension
 - Goto Chrome->Extensions->Load Unpacked
 - Point to 'dist' directory inside your project
 - After each build, reload extension 
-```
+
+Reference: https://developer.chrome.com/docs/extensions/mv3/getstarted/
+
+### Run as firefox extension
+Follow steps given on this link
+
+https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/
 
 ### Todos
 - [x] Consistemt design System
@@ -36,6 +54,7 @@ npm run build
 - [x] Application settings
 - [ ] Contributors for photographs & Quotes
 - [ ] Wallpaper preview when hovered on photoprapher info
+- [ ] Save applicaton data on browser storage(instead of localstorage) & sync across devices.
 
 
 ### Change Log
