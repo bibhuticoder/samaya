@@ -54,6 +54,7 @@ https://extensionworkshop.com/documentation/develop/temporary-installation-in-fi
 - [x] Application settings
 - [ ] Contributors for photographs & Quotes
 - [ ] Wallpaper preview when hovered on photoprapher info
+- [ ] Save applicaton data on browser storage(instead of localstorage) & sync across devices.
 
 
 ### Change Log
