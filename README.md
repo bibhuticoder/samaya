@@ -17,15 +17,23 @@ npm install
 npm run serve
 ```
 
-### Deployemnt to chrome extensions
+### Run as chrome extension
 
 ```
 npm run build
 
-// To install on chrome
+// Steps to follow
 - Goto Chrome->Extensions->Load Unpacked
 - Point to 'dist' directory inside your project
 - After each build, reload extension 
+```
+
+### Run as firefox extension
+```
+npm run build
+
+// Follow steps given on this link
+https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/
 ```
 
 ### Todos
