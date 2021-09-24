@@ -19,8 +19,12 @@
       <div v-if="source == 'collections'">
         <div class="d-flex justify-content-between">
           <label class="title align-self-center">Unsplash collection Ids</label>
-          <button class="btn d-flex" @click="loadRandomImageFromCollections()" :disabled="fetchRandomLoading">
-            <Loading v-if="fetchRandomLoading" color="white" /> 
+          <button
+            class="btn d-flex"
+            @click="loadRandomImageFromCollections()"
+            :disabled="fetchRandomLoading"
+          >
+            <Loading v-if="fetchRandomLoading" color="white" />
             <span class="ml-1">Load Random Image</span>
           </button>
         </div>
@@ -58,9 +62,17 @@
 
       <p class="note">
         The wallpapers are loaded from
-        <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
+        <a
+          href="https://unsplash.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Unsplash</a
+        >
         . If you want to contribute, please visit the
-        <a href="https://bibhuticoder.github.io/samaya/#contribution" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://bibhuticoder.github.io/samaya/#contribution"
+          target="_blank"
+          rel="noopener noreferrer"
           >Contribution Guide</a
         >.
       </p>
@@ -74,7 +86,7 @@ import Toggle from "@/components/Toggle";
 import Loading from "@/components/Loading";
 import { getUnsplashImageById, fetchRandomUnsplashImage } from "@/helpers";
 import vueCustomScrollbar from "vue-custom-scrollbar";
-import { cacheImage } from "@/helpers";
+import { cacheImage, getCachedImage } from "@/helpers";
 
 const { mapFields } = createHelpers({
   getterType: "wallpapers/getField",
@@ -111,14 +123,17 @@ export default {
       };
 
       // Cache & render
-      cacheImage(this.currentWallpaper.urls.regular, "background_image", () => {
+      try {
+        let cachedImage = await cacheImage(
+          this.currentWallpaper.urls,
+          "background_image"
+        );
         document.getElementById(
           "background"
-        ).style.backgroundImage = `url(${localStorage.getItem(
-          "background_image"
-        )})`;
-        if (callback) callback();
-      });
+        ).style.backgroundImage = `url(${cachedImage})`;
+      } catch (e) {
+        console.log(e);
+      }
     },
 
     async loadRandomImageFromCollections() {
@@ -127,10 +142,8 @@ export default {
       if (data) {
         data.fetchedAt = Date.now();
         this.currentWallpaper = data;
-        await this.selectWallpaper(
-          this.currentWallpaper.id,
-          () => (this.fetchRandomLoading = false)
-        );
+        await this.selectWallpaper(this.currentWallpaper.id);
+        this.fetchRandomLoading = false;
       }
     },
   },

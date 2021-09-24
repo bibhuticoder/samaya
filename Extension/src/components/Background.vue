@@ -28,7 +28,7 @@ import {
 } from "@/helpers";
 import { createHelpers } from "vuex-map-fields";
 import moment from "moment";
-import { cacheImage } from "@/helpers";
+import { cacheImage, getCachedImage } from "@/helpers";
 
 const { mapFields } = createHelpers({
   getterType: "wallpapers/getField",
@@ -42,47 +42,50 @@ export default {
     return {};
   },
 
-  mounted() {
+  async mounted() {
     if (this.currentWallpaper) {
       let stale = moment(this.currentWallpaper.fetchedAt, "x").isBefore(
         moment().subtract(1, "d")
       );
-      if (stale) this.fetchRandomWallpaper();
-      else this.setWallpaper();
-    } else this.fetchRandomWallpaper();
+      if (stale) {
+        await this.fetchRandomWallpaper(stale);
+      } else await this.setWallpaper();
+    } else await this.fetchRandomWallpaper();
   },
 
   methods: {
-    async fetchRandomWallpaper() {
+    async fetchRandomWallpaper(isStale) {
       let data;
-      if (this.source == "collection") data = await fetchRandomUnsplashImage();
-      else if (this.source == "featured") {
+      if (this.source == "collections") {
+        data = await fetchRandomUnsplashImage(this.collections);
+      } else if (this.source == "featured") {
         let rInd = random(0, this.featuredImages.length);
         data = await getUnsplashImageById(this.featuredImages[rInd]);
       }
-
       if (data) {
         data.fetchedAt = Date.now();
         this.currentWallpaper = data;
-        this.setWallpaper();
+        await this.setWallpaper(isStale);
       }
     },
 
-    setWallpaper() {
-      let existsAtCache = localStorage.getItem("background_image");
+    async setWallpaper(isStale) {
+      let existsAtCache = await getCachedImage("background_image");
 
-      if (existsAtCache) {
+      if (!isStale && existsAtCache) {
         this.$refs.background.style.backgroundImage = `url(${existsAtCache})`;
       } else {
-        cacheImage(
-          this.currentWallpaper.urls.regular,
-          "background_image",
-          () => {
-            this.$refs.background.style.backgroundImage = `url(${localStorage.getItem(
-              "background_image"
-            )})`;
-          }
-        );
+        try {
+          let cachedImage = await cacheImage(
+            this.currentWallpaper.urls,
+            "background_image"
+          );
+          document.getElementById(
+            "background"
+          ).style.backgroundImage = `url(${cachedImage})`;
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
   },
@@ -107,6 +110,7 @@ export default {
   background: transparent no-repeat center center fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #373737;
 }
 .credits {
   position: absolute;

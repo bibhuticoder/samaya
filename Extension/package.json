@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0",
     "core-js": "^3.6.5",
+    "localforage": "^1.10.0",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "uuid": "^8.3.0",
