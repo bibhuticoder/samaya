@@ -9,6 +9,10 @@
       <Calendar ref="calendar" />
     </div>
 
+    <div class="stocksWrapper">
+      <Stocks />
+    </div>
+
     <div class="settingsWrapper">
       <Settings ref="settings" />
     </div>
@@ -38,6 +42,7 @@ import NotePad from "@/components/NotePad";
 import Settings from "@/components/Settings/index";
 import Clock from "@/components/Clock";
 import Calendar from "@/components/Calendar";
+import Stocks from "@/components/Stocks";
 import Quote from "@/components/Quote";
 import Greetings from "@/components/Greetings";
 import FocusToday from "@/components/FocusToday";
@@ -58,6 +63,7 @@ export default {
     Greetings,
     FocusToday,
     Background,
+    Stocks,
   },
 
   created() {
@@ -100,6 +106,13 @@ export default {
   .calendarWrapper {
     position: absolute;
     top: 10px;
+    right: 10px;
+    z-index: 1000;
+  }
+
+  .stocksWrapper {
+    position: absolute;
+    bottom: 80px;
     right: 10px;
     z-index: 1000;
   }

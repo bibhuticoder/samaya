@@ -47,6 +47,8 @@ import SettingsQuote from "@/components/Settings/quote.vue";
 import SettingsWallpapers from "@/components/Settings/wallpapers.vue";
 import SettingsFocusToday from "@/components/Settings/focusToday.vue";
 import SettingsAbout from "@/components/Settings/about.vue";
+import SettingsStocks from "@/components/Settings/stocks.vue";
+
 
 import { createHelpers } from "vuex-map-fields";
 
@@ -66,6 +68,7 @@ export default {
     SettingsWallpapers,
     SettingsFocusToday,
     SettingsAbout,
+    SettingsStocks
   },
   data() {
     return {
@@ -97,7 +100,7 @@ export default {
           icon: "clipboard-list-check",
           component: "SettingsNotepad",
         },
-        
+
         // {
         //   id: "greeting",
         //   name: "Greetings",
@@ -115,6 +118,13 @@ export default {
           name: "Quote",
           icon: "quote-right",
           component: "SettingsQuote",
+        },
+
+        {
+          id: "stocks",
+          name: "Stocks",
+          icon: "chart-line",
+          component: "SettingsStocks",
         },
 
         {

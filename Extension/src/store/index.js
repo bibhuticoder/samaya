@@ -8,6 +8,7 @@ import NotePadModule from '@/store/modules/notepad';
 import CalendarModule from '@/store/modules/calendar';
 import WallpapersModule from '@/store/modules/wallpapers';
 import SettingsModule from '@/store/modules/settings';
+import StocksModule from '@/store/modules/stocks';
 import createPersistedState from "vuex-persistedstate";
 import storage from "@/storage";
 
@@ -28,7 +29,8 @@ export default new Vuex.Store({
     notepad: NotePadModule,
     calendar: CalendarModule,
     wallpapers: WallpapersModule,
-    settings: SettingsModule
+    settings: SettingsModule,
+    stocks: StocksModule
   },
   plugins: [createPersistedState({
     key: "samaya_store",
