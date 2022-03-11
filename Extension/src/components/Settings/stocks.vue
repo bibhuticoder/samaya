@@ -55,7 +55,7 @@ export default {
 
   methods: {
     fetchData() {
-      fetch("https://almighty569.github.io/nepse-api/data/companies.json")
+      fetch("https://the-value-crew.github.io/nepse-api/data/companies.json")
         .then((r) => r.json())
         .then((companiesData) => {
           this.companiesData = companiesData;

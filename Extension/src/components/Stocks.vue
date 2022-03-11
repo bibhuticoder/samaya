@@ -1,6 +1,11 @@
 <template>
   <div class="stocksContainer">
     <div class="stocks" v-if="visibility">
+      <span class="--text-sm">
+        <i class="icon fal fa-clock mr-2"></i>
+        Updated {{ lastUpdatedAt }}
+      </span>
+
       <table>
         <thead>
           <tr>
@@ -39,6 +44,8 @@
 
 <script>
 import { createHelpers } from "vuex-map-fields";
+import moment from "moment";
+
 const { mapFields } = createHelpers({
   getterType: "stocks/getField",
   mutationType: "stocks/updateField",
@@ -49,6 +56,7 @@ export default {
   props: {},
   data() {
     return {
+      lastUpdatedAt: null,
       latestStocksData: null,
     };
   },
@@ -59,10 +67,19 @@ export default {
 
   methods: {
     fetchData() {
-      fetch("https://almighty569.github.io/nepse-api/data/date/latest.json")
+      fetch("https://the-value-crew.github.io/nepse-api/data/info.json")
         .then((r) => r.json())
-        .then((latestData) => {
-          this.latestStocksData = latestData.data;
+        .then((infoData) => {
+          this.lastUpdatedAt = moment
+            .utc(infoData.lastUpdatedAt, "YYYY-MM-DD HH:mm:ss")
+            .fromNow();
+          fetch(
+            "https://the-value-crew.github.io/nepse-api/data/date/latest.json"
+          )
+            .then((r) => r.json())
+            .then((latestData) => {
+              this.latestStocksData = latestData.data;
+            });
         });
     },
   },
