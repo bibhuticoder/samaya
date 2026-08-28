@@ -23,6 +23,13 @@
 
 ---
 
+## 📥 Download Extension
+
+- 🌐 **Chrome / Brave / Edge / Opera**: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/samaya/jmpipanemahgfelokjjpdilfcfboinni)
+- 🦊 **Mozilla Firefox**: [Install from Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/samaya/)
+
+---
+
 ## 🌟 Highlights & Features
 
 - 📅 **Nepali Bikram Sambat (वि.सं.) Calendar**: Accurate BS calendar engine (2000–2090+ BS), monthly grid view, today highlight, and AD-to-BS conversion.
@@ -134,4 +141,4 @@ We warmly welcome contributions!
 ---
 
 ## 📄 License
-Open source under the [ISC / MIT License](LICENSE). Made with ❤️ by [Bibhuti Poudyal](https://github.com/bibhuticoder).
+Open source under the [ISC / MIT License](LICENSE). Made with ❤️ by [Bibhuti Poudyal](https://bibhuti.me).
