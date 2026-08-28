@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Samaya - समय",
+  "version": "2.0.0",
+  "description": "Friendly personal dashboard featuring Nepali Bikram Sambat calendar, daily quotes & wallpapers.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/favicon.png",
+      "48": "icons/favicon.png",
+      "128": "icons/favicon.png"
+    },
+    "default_title": "Samaya"
+  },
+  "icons": {
+    "16": "icons/favicon.png",
+    "48": "icons/favicon.png",
+    "128": "icons/favicon.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://bibhuticoder.github.io/*"
+  ]
+}
